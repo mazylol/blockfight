@@ -8,23 +8,34 @@ import (
 )
 
 const (
-	screenWidth  = 640
-	screenHeight = 900
+	screenWidth  = 1280
+	screenHeight = 720
 )
+
+type Player struct {
+	posX float32
+	posY float32
+}
 
 type Game struct{}
 
+var playerOne = Player{posX: 100, posY: 100}
+
+func (g *Game) handleMovement() {
+	if ebiten.IsKeyPressed(ebiten.KeyD) {
+		playerOne.posX += 10
+	} else if ebiten.IsKeyPressed(ebiten.KeyA) {
+		playerOne.posX -= 10
+	}
+}
+
 func (g *Game) Update() error {
+	g.handleMovement()
 	return nil
 }
 
-type Player struct {
-	posX int
-	posY int
-}
-
 func (g *Game) Draw(screen *ebiten.Image) {
-	vector.DrawFilledRect(screen, float32(0), float32(0), float32(50), float32(50), color.RGBA{
+	vector.DrawFilledRect(screen, playerOne.posX, playerOne.posY, float32(50), float32(50), color.RGBA{
 		R: 255,
 		G: 0,
 		B: 0,
