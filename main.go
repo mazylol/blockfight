@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/vector"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"github.com/mazylol/blockfight/bfight"
 	"image/color"
 	"log"
 )
@@ -12,35 +14,33 @@ const (
 	screenHeight = 720
 )
 
-type Player struct {
-	posX float32
-	posY float32
-}
-
 type Game struct{}
 
-var playerOne = Player{posX: 100, posY: 100}
-
-func (g *Game) handleMovement() {
-	if ebiten.IsKeyPressed(ebiten.KeyD) {
-		playerOne.posX += 10
-	} else if ebiten.IsKeyPressed(ebiten.KeyA) {
-		playerOne.posX -= 10
-	}
-}
+var playerOne = bfight.Player{PosX: 100, PosY: 100, Health: 100}
+var playerTwo = bfight.Player{PosX: 200, PosY: 100, Health: 100}
 
 func (g *Game) Update() error {
-	g.handleMovement()
+	playerOne.HandleMovement(ebiten.KeyA, ebiten.KeyD)
+	playerTwo.HandleMovement(ebiten.KeyLeft, ebiten.KeyRight)
+
 	return nil
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	vector.DrawFilledRect(screen, playerOne.posX, playerOne.posY, float32(50), float32(50), color.RGBA{
+	playerOne.DrawPlayer(screen, color.RGBA{
 		R: 255,
 		G: 0,
 		B: 0,
 		A: 1,
-	}, true)
+	})
+	playerTwo.DrawPlayer(screen, color.RGBA{
+		R: 0,
+		G: 255,
+		B: 0,
+		A: 1,
+	})
+
+	ebitenutil.DebugPrint(screen, fmt.Sprintf("Player 1: (%v, %v), Player 2: (%v, %v)\n", playerOne.PosX, playerOne.PosY, playerTwo.PosX, playerTwo.PosY))
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
@@ -49,7 +49,7 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 
 func main() {
 	ebiten.SetWindowSize(screenWidth, screenHeight)
-	ebiten.SetWindowTitle("Hello, World!")
+	ebiten.SetWindowTitle("Blockfight")
 	if err := ebiten.RunGame(&Game{}); err != nil {
 		log.Fatal(err)
 	}
