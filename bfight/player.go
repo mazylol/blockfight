@@ -27,7 +27,7 @@ func (p *Player) Jump() {
 }
 
 func (p *Player) DrawPlayer(screen *ebiten.Image, color color.RGBA) {
-	vector.DrawFilledRect(screen, p.PosX, p.PosY, float32(50), float32(50), color, false)
+	vector.DrawFilledRect(screen, p.PosX, p.PosY, float32(50), float32(50), color, true)
 }
 
 func (p *Player) HandleMovement(left ebiten.Key, right ebiten.Key, jump ebiten.Key) {

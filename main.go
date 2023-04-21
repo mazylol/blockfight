@@ -39,13 +39,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		R: 255,
 		G: 0,
 		B: 0,
-		A: 255,
+		A: 100,
 	})
 	playerTwo.DrawPlayer(screen, color.RGBA{
 		R: 0,
 		G: 255,
 		B: 0,
-		A: 255,
+		A: 100,
 	})
 
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("Player 1: (%v, %v), Player 2: (%v, %v)\n", playerOne.PosX, playerOne.PosY, playerTwo.PosX, playerTwo.PosY))
