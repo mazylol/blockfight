@@ -2,8 +2,18 @@
 
 int main(void)
 {
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1280;
+    const int screenHeight = 720;
+
+    typedef struct Players {
+        int PosX;
+        int PosY;
+        int Health;
+    } Player;
+
+    Player playerOne;
+    playerOne.PosX = 100;
+    playerOne.PosY = screenHeight;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
@@ -13,9 +23,11 @@ int main(void)
     {
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawRectangle(playerOne.PosX, playerOne.PosY - 55, 50, 50, MAROON);
+
+        DrawFPS(1,1);
 
         EndDrawing();
     }
