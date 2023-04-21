@@ -1,37 +1,34 @@
 #include "raylib.h"
+#include "player.h"
 
-int main(void)
-{
+int main(void) {
     const int screenWidth = 1280;
     const int screenHeight = 720;
 
-    typedef struct Players {
-        int PosX;
-        int PosY;
-        int Health;
-    } Player;
-
-    Player playerOne;
-    playerOne.PosX = 100;
-    playerOne.PosY = screenHeight;
-
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Block Fight");
 
     SetTargetFPS(60);
 
-    while (!WindowShouldClose())
-    {
+    Player playerOne = {0, screenHeight, 100};
+    Player playerTwo = {screenWidth - 50, screenHeight, 100};
+
+    while (!WindowShouldClose()) {
+        HandleMovement(&playerOne, KEY_A, KEY_D);
+        HandleMovement(&playerTwo, KEY_LEFT, KEY_RIGHT);
+
         BeginDrawing();
 
         ClearBackground(BLACK);
 
-        DrawRectangle(playerOne.PosX, playerOne.PosY - 55, 50, 50, MAROON);
+        DrawPlayer(&playerOne, RED);
+        DrawPlayer(&playerTwo, BLUE);
 
-        DrawFPS(1,1);
+        DrawFPS(1, 1);
 
         EndDrawing();
     }
 
     CloseWindow();
+
     return 0;
 }
