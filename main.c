@@ -13,8 +13,8 @@ int main(void) {
     Player playerTwo = {screenWidth - 50, screenHeight, 100};
 
     while (!WindowShouldClose()) {
-        HandleMovement(&playerOne, KEY_A, KEY_D);
-        HandleMovement(&playerTwo, KEY_LEFT, KEY_RIGHT);
+        HandleMovement(&playerOne, KEY_A, KEY_D, KEY_W);
+        HandleMovement(&playerTwo, KEY_LEFT, KEY_RIGHT, KEY_UP);
 
         BeginDrawing();
 

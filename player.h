@@ -13,8 +13,9 @@ typedef struct {
     int PosX;
     int PosY;
     int Health;
+    bool IsJumping;
 } Player;
 
 void DrawPlayer(Player *player, struct Color color);
 
-void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right);
+void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, KeyboardKey jump);
