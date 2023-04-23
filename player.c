@@ -1,7 +1,3 @@
-//
-// Created by mazylol on 4/21/23.
-//
-
 #include "player.h"
 #include "raylib.h"
 

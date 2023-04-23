@@ -1,7 +1,3 @@
-//
-// Created by mazylol on 4/21/23.
-//
-
 #ifndef BLOCKFIGHT_PLAYER_H
 #define BLOCKFIGHT_PLAYER_H
 
