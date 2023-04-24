@@ -30,7 +30,7 @@ void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, Keyboar
         player->PosY += 5;
     }
 
-    if (player->IsJumping && player->PosY != 720-150) {
+    if (player->IsJumping && player->PosY != 720 - 150) {
         player->PosY -= 10;
     } else {
         player->IsJumping = false;
