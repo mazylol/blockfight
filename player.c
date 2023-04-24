@@ -10,7 +10,7 @@ void MoveLeft(Player *player) {
 }
 
 void Jump(Player *player) {
-    player->PosY -= 150;
+    player->IsJumping = true;
 }
 
 void DrawPlayer(Player *player, struct Color color) {
@@ -26,8 +26,12 @@ void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, Keyboar
         player->PosX = 1280 - 50;
     }
 
-    if (player->PosY < 720) {
+    if (player->PosY < 720 && !player->IsJumping) {
         player->PosY += 5;
+    }
+
+    if (player->IsJumping && player->PosY != 720-150) {
+        player->PosY -= 10;
     } else {
         player->IsJumping = false;
     }

@@ -9,8 +9,8 @@ int main(void) {
 
     SetTargetFPS(60);
 
-    Player playerOne = {0, screenHeight, 100};
-    Player playerTwo = {screenWidth - 50, screenHeight, 100};
+    Player playerOne = {0, screenHeight, 100, false};
+    Player playerTwo = {screenWidth - 50, screenHeight, 100, false};
 
     while (!WindowShouldClose()) {
         HandleMovement(&playerOne, KEY_A, KEY_D, KEY_W);
