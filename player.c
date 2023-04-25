@@ -18,6 +18,10 @@ void DrawPlayer(Player *player, struct Color color) {
 }
 
 void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, KeyboardKey jump) {
+    if (player->PosY < 1) {
+        CloseWindow();
+    }
+
     if (player->PosX <= 0) {
         player->PosX = 0;
     }
