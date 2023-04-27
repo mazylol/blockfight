@@ -12,6 +12,6 @@ typedef struct {
     bool IsJumping;
 } Player;
 
-void DrawPlayer(Player *player, struct Color color);
+void DrawPlayer(Player *player, Texture2D sword, struct Color color);
 
 void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, KeyboardKey jump);

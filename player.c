@@ -13,8 +13,11 @@ void Jump(Player *player) {
     player->IsJumping = true;
 }
 
-void DrawPlayer(Player *player, struct Color color) {
+void DrawPlayer(Player *player, Texture2D sword, struct Color color) {
+    ;
+
     DrawRectangle(player->PosX, player->PosY - 55, 50, 50, color);
+    DrawTexture(sword, player->PosX, player->PosY - 55, WHITE);
 }
 
 void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, KeyboardKey jump) {

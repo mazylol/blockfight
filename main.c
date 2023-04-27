@@ -12,6 +12,8 @@ int main(void) {
     Player playerOne = {0, screenHeight, 100, false};
     Player playerTwo = {screenWidth - 50, screenHeight, 100, false};
 
+    Texture2D sword = LoadTexture("C:/Users/LP/GolandProjects/blockfight/resources/sword.png");
+
     bool gameStarted = false;
 
     while (!WindowShouldClose()) {
@@ -35,12 +37,14 @@ int main(void) {
 
             ClearBackground(BLACK);
 
-            DrawPlayer(&playerOne, RED);
-            DrawPlayer(&playerTwo, BLUE);
+            DrawPlayer(&playerOne, sword, RED);
+            DrawPlayer(&playerTwo, sword, BLUE);
 
             EndDrawing();
         }
     }
+
+    UnloadTexture(sword);
 
     CloseWindow();
 
