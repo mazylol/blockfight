@@ -24,9 +24,7 @@ int main(void) {
 
             ClearBackground(RAYWHITE);
             DrawText("Block Fight!!!", screenWidth / 4, screenHeight / 3, 100, CLITERAL(Color) {137, 207, 240, 255});
-            DrawText("Rules:", screenWidth / 2 - 50, screenHeight / 2, 30, GRAY);
-            DrawText("Don't spam jump. I have no idea why but it makes you go up infinitely.", screenWidth / 4,
-                     screenHeight / 2 + 50, 20, GRAY);
+
             EndDrawing();
         } else {
 
