@@ -12,7 +12,11 @@ int main(void) {
     Player playerOne = {0, screenHeight, 100, false};
     Player playerTwo = {screenWidth - 50, screenHeight, 100, false};
 
-    Texture2D sword = LoadTexture("resources/sword.png");
+    Image imOrigin = LoadImage("resources/sword.png");
+    ImageFormat(&imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    Texture2D sword = LoadTextureFromImage(imOrigin);
+    sword.height = 50;
+    sword.width = 50;
 
     bool gameStarted = false;
 

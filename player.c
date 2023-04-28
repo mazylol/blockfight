@@ -14,10 +14,8 @@ void Jump(Player *player) {
 }
 
 void DrawPlayer(Player *player, Texture2D sword, struct Color color) {
-    ;
-
     DrawRectangle(player->PosX, player->PosY - 55, 50, 50, color);
-    DrawTexture(sword, player->PosX, player->PosY - 55, WHITE);
+    DrawTexture(sword, player->PosX + 30, player->PosY - 70, WHITE);
 }
 
 void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, KeyboardKey jump) {
