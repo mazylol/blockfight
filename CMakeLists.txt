@@ -19,8 +19,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
         FetchContent_Populate(raylib)
         set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
         add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
-    endif()
-endif()
+    endif ()
+endif ()
 
 # Our Project
 
@@ -32,11 +32,15 @@ target_link_libraries(${PROJECT_NAME} raylib)
 if (${PLATFORM} STREQUAL "Web")
     # Tell Emscripten to build an example.html file.
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-endif()
+endif ()
 
 # Checks if OSX and links appropriate frameworks (Only required on MacOS)
 if (APPLE)
     target_link_libraries(${PROJECT_NAME} "-framework IOKit")
     target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
     target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
-endif()
+endif ()
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>/resources)

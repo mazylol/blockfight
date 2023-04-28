@@ -12,7 +12,7 @@ int main(void) {
     Player playerOne = {0, screenHeight, 100, false};
     Player playerTwo = {screenWidth - 50, screenHeight, 100, false};
 
-    Texture2D sword = LoadTexture("C:/Users/LP/GolandProjects/blockfight/resources/sword.png");
+    Texture2D sword = LoadTexture("resources/sword.png");
 
     bool gameStarted = false;
 
