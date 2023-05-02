@@ -9,14 +9,15 @@ int main(void) {
 
     SetTargetFPS(60);
 
-    Player playerOne = {0, screenHeight, 100, false};
-    Player playerTwo = {screenWidth - 50, screenHeight, 100, false};
-
     Image imOrigin = LoadImage("resources/sword.png");
     ImageFormat(&imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
     Texture2D sword = LoadTextureFromImage(imOrigin);
     sword.height = 50;
     sword.width = 50;
+
+    Player playerOne = {0, screenHeight, 100, false, sword};
+    Player playerTwo = {screenWidth - 50, screenHeight, 100, false, sword};
+
 
     bool gameStarted = false;
 
@@ -37,12 +38,14 @@ int main(void) {
             HandleMovement(&playerOne, KEY_A, KEY_D, KEY_W);
             HandleMovement(&playerTwo, KEY_LEFT, KEY_RIGHT, KEY_UP);
 
+            HandleCollisions(&playerOne, &playerTwo);
+
             BeginDrawing();
 
             ClearBackground(BLACK);
 
-            DrawPlayer(&playerOne, sword, RED);
-            DrawPlayer(&playerTwo, sword, BLUE);
+            DrawPlayer(&playerOne, RED);
+            DrawPlayer(&playerTwo, BLUE);
 
             EndDrawing();
         }

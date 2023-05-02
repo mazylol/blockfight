@@ -13,9 +13,15 @@ void Jump(Player *player) {
     player->IsJumping = true;
 }
 
-void DrawPlayer(Player *player, Texture2D sword, struct Color color) {
+void DrawPlayer(Player *player, struct Color color) {
     DrawRectangle(player->PosX, player->PosY - 55, 50, 50, color);
-    DrawTexture(sword, player->PosX + 30, player->PosY - 70, WHITE);
+
+    if (player->LastKey == KEY_A || player->LastKey == KEY_LEFT) {
+        DrawTexture(player->Sword.Texture, player->PosX - 30, player->PosY - 70, WHITE);
+    } else if (player->LastKey == KEY_D || player->LastKey == KEY_RIGHT) {
+        DrawTexture(player->Sword.Texture, player->PosX + 30, player->PosY - 70, WHITE);
+    }
+    //DrawTexture(player->Sword, player->PosX + 30, player->PosY - 70, WHITE);
 }
 
 void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, KeyboardKey jump) {
@@ -39,15 +45,38 @@ void HandleMovement(Player *player, KeyboardKey left, KeyboardKey right, Keyboar
 
     if (IsKeyDown(left)) {
         MoveLeft(player);
+        player->LastKey = left;
     }
 
     if (IsKeyDown(right)) {
         MoveRight(player);
+        player->LastKey = right;
     }
 
     if (IsKeyPressed(jump)) {
         if (player->PosY > 719) {
             player->IsJumping = true;
         }
+    }
+}
+
+void HandleCollisions(Player *playerOne, Player *playerTwo) {
+    Rectangle playerOneRect = {
+            playerOne->PosX,
+            playerOne->PosY - 55,
+            50,
+            50
+    };
+
+    Rectangle playerTwoRect = {
+            playerTwo->PosX,
+            playerTwo->PosY - 55,
+            50,
+            50
+    };
+
+    if (CheckCollisionRecs(playerOneRect, playerTwoRect)) {
+        playerOne->PosX -= 10;
+        playerTwo->PosX += 10;
     }
 }
