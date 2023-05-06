@@ -1,6 +1,1 @@
-blockfight
-blockfight.exe
-cmake-build-debug
-cmake-build-release
-cmake-build-release-visual-studio
-build
+target/
