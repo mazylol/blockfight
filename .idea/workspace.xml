@@ -12,7 +12,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="353ccbb4-4b03-4f97-9533-fc1a83a0eed7" name="Changes" comment="" />
+    <list default="true" id="353ccbb4-4b03-4f97-9533-fc1a83a0eed7" name="Changes" comment="split player struct and impl into its own file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +21,13 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -28,6 +35,9 @@
     <option name="directoryName" value="yywb1d4s" />
   </component>
   <component name="ProjectId" id="2PVwvx19C2MRe9tNmlSAVwCCMZp" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,6 +62,11 @@
 }]]></component>
   <component name="RsExternalLinterProjectSettings">
     <option name="runOnTheFly" value="true" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="cargo build" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="build" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
@@ -88,12 +103,40 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1683555792725</updated>
-      <workItem from="1683555795696" duration="387000" />
+      <workItem from="1683555795696" duration="1509000" />
     </task>
+    <task id="LOCAL-00001" summary="jetbrains">
+      <created>1683556839971</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683556839971</updated>
+    </task>
+    <task id="LOCAL-00002" summary="naming and unneeded qualifier">
+      <created>1683556864692</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683556864692</updated>
+    </task>
+    <task id="LOCAL-00003" summary="split player struct and impl into its own file">
+      <created>1683557293251</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683557293251</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="jetbrains" />
+    <MESSAGE value="naming and unneeded qualifier" />
+    <MESSAGE value="split player struct and impl into its own file" />
+    <option name="LAST_COMMIT_MESSAGE" value="split player struct and impl into its own file" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
