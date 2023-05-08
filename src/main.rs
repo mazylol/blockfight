@@ -4,7 +4,7 @@ const SCREEN_WIDTH: i32 = 1280;
 const SCREEN_HEIGHT: i32 = 720;
 
 fn main() {
-    let (mut rl, thread) = raylib::init()
+    let (mut rl, thread) = init()
         .size(SCREEN_WIDTH, SCREEN_HEIGHT)
         .title("Block Fight")
         .build();
@@ -17,18 +17,18 @@ fn main() {
     sword.width = 50;
 
     let mut player_one = Player {
-        posx: 0,
-        posy: SCREEN_HEIGHT,
+        x: 0,
+        y: SCREEN_HEIGHT,
         // health: 100,
-        isjumping: false,
+        jumping: false,
         velocity: 0
     };
 
     let mut player_two = Player {
-        posx: SCREEN_WIDTH - 50,
-        posy: SCREEN_HEIGHT,
+        x: SCREEN_WIDTH - 50,
+        y: SCREEN_HEIGHT,
         // health: 100,
-        isjumping: false,
+        jumping: false,
         velocity: 0
     };
 
@@ -49,35 +49,35 @@ fn main() {
 }
 
 struct Player {
-    posx: i32,
-    posy: i32,
+    x: i32,
+    y: i32,
     // health: i32,
-    isjumping: bool,
+    jumping: bool,
     velocity: i32
 }
 
 impl Player {
     pub fn draw(&self, d: &mut RaylibDrawHandle, color: Color) {
-        d.draw_rectangle(self.posx, self.posy - 55, 50, 50, color);
+        d.draw_rectangle(self.x, self.y - 55, 50, 50, color);
     }
 
     pub fn movement(&mut self, rl: &RaylibHandle, left: KeyboardKey, right: KeyboardKey, jump: KeyboardKey) {
-        if self.posx <= 0 {
-            self.posx = 0;
+        if self.x <= 0 {
+            self.x = 0;
         }
 
-        if self.posx >= 1280-50 {
-            self.posx = 1280-50;
+        if self.x >= 1280-50 {
+            self.x = 1280-50;
         }
 
-        if self.posy < 720 && !self.isjumping {
-            self.posy += 5;
+        if self.y < 720 && !self.jumping {
+            self.y += 5;
         }
 
-        if self.isjumping && self.posy != 720-150 {
-            self.posy -= 10;
+        if self.jumping && self.y != 720-150 {
+            self.y -= 10;
         } else {
-            self.isjumping = false;
+            self.jumping = false;
         }
 
         if rl.is_key_down(left) {
@@ -89,26 +89,26 @@ impl Player {
         }
 
         if rl.is_key_pressed(jump) {
-            if self.posy > 719 {
-                self.isjumping = true;
+            if self.y > 719 {
+                self.jumping = true;
             }
         }
 
-        self.posx += self.velocity;
+        self.x += self.velocity;
     }
 }
 
 fn collisions(p_one: &mut Player, p_two: &mut Player) {
     let player_one_rect = raylib::ffi::Rectangle {
-        x: p_one.posx as f32,
-        y: (p_one.posy - 55) as f32,
+        x: p_one.x as f32,
+        y: (p_one.y - 55) as f32,
         width: 50 as f32,
         height: 50 as f32
     };
 
     let player_two_rect = raylib::ffi::Rectangle {
-        x: p_two.posx as f32,
-        y: (p_two.posy - 55) as f32,
+        x: p_two.x as f32,
+        y: (p_two.y - 55) as f32,
         width: 50 as f32,
         height: 50 as f32
     };
