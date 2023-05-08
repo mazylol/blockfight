@@ -1,4 +1,8 @@
+mod types;
+
 use raylib::prelude::*;
+
+use types::Player;
 
 const SCREEN_WIDTH: i32 = 1280;
 const SCREEN_HEIGHT: i32 = 720;
@@ -21,7 +25,7 @@ fn main() {
         y: SCREEN_HEIGHT,
         // health: 100,
         jumping: false,
-        velocity: 0
+        velocity: 0,
     };
 
     let mut player_two = Player {
@@ -29,7 +33,7 @@ fn main() {
         y: SCREEN_HEIGHT,
         // health: 100,
         jumping: false,
-        velocity: 0
+        velocity: 0,
     };
 
     while !rl.window_should_close() {
@@ -48,71 +52,21 @@ fn main() {
     }
 }
 
-struct Player {
-    x: i32,
-    y: i32,
-    // health: i32,
-    jumping: bool,
-    velocity: i32
-}
-
-impl Player {
-    pub fn draw(&self, d: &mut RaylibDrawHandle, color: Color) {
-        d.draw_rectangle(self.x, self.y - 55, 50, 50, color);
-    }
-
-    pub fn movement(&mut self, rl: &RaylibHandle, left: KeyboardKey, right: KeyboardKey, jump: KeyboardKey) {
-        if self.x <= 0 {
-            self.x = 0;
-        }
-
-        if self.x >= 1280-50 {
-            self.x = 1280-50;
-        }
-
-        if self.y < 720 && !self.jumping {
-            self.y += 5;
-        }
-
-        if self.jumping && self.y != 720-150 {
-            self.y -= 10;
-        } else {
-            self.jumping = false;
-        }
-
-        if rl.is_key_down(left) {
-            self.velocity = -10;
-        } else if rl.is_key_down(right) {
-            self.velocity = 10;
-        } else {
-            self.velocity = 0;
-        }
-
-        if rl.is_key_pressed(jump) {
-            if self.y > 719 {
-                self.jumping = true;
-            }
-        }
-
-        self.x += self.velocity;
-    }
-}
-
 fn collisions(p_one: &mut Player, p_two: &mut Player) {
     let player_one_rect = raylib::ffi::Rectangle {
         x: p_one.x as f32,
         y: (p_one.y - 55) as f32,
         width: 50 as f32,
-        height: 50 as f32
+        height: 50 as f32,
     };
 
     let player_two_rect = raylib::ffi::Rectangle {
         x: p_two.x as f32,
         y: (p_two.y - 55) as f32,
         width: 50 as f32,
-        height: 50 as f32
+        height: 50 as f32,
     };
-    
+
     unsafe {
         if raylib::ffi::CheckCollisionRecs(player_one_rect, player_two_rect) {
             p_one.velocity = 0;
