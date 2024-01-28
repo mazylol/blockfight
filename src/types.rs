@@ -26,15 +26,15 @@ impl Player {
         }
 
         if self.jumping && self.y != 720-150 {
-            self.y -= 10;
+            self.y -= 5;
         } else {
             self.jumping = false;
         }
 
         if rl.is_key_down(left) {
-            self.velocity = -10;
+            self.velocity = -5;
         } else if rl.is_key_down(right) {
-            self.velocity = 10;
+            self.velocity = 5;
         } else {
             self.velocity = 0;
         }

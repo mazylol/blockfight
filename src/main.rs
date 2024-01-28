@@ -13,7 +13,7 @@ fn main() {
         .title("Block Fight")
         .build();
 
-    rl.set_target_fps(60);
+    rl.set_target_fps(144);
 
     let i = Image::load_image("resources/sword.png").expect("could not load image sword");
     let mut sword = rl.load_texture_from_image(&thread, &i).unwrap();
